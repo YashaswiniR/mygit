@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.userlist', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/users', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
+    templateUrl: 'users/list.html',
+    controller: 'UserListController'
   });
 }])
 
-.controller('View1Ctrl', function($scope, $http) {
+.controller('UserListController', function($scope, $http) {
     $http.get('https://api.github.com/users').success(function (response) {
         $scope.users = response;
     });
