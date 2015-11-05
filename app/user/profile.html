@@ -1,15 +1,31 @@
-<div class="userDetails">
-  <img alt="Avatar" height="150" width="150" ng-src='{{selectedUser.avatar}}'>
-  <li style="font-size:26px">{{selectedUser.name}}</li>
-  <li style="font-size:20px;color: #666;padding-bottom: 15px;">{{selectedUser.login}}</li>
-  <div class="contactDetails">
-    <li>{{selectedUser.location}}</li>
-    <li><a href="{{selectedUser.email}}">{{selectedUser.email}}</a></li>
-    <li><a href="{{selectedUser.blog}}">{{selectedUser.blog}}</a></li>
-    <li>{{selectedUser.followers}} followers</li>
+
+<span class="breadCrumb">
+  <a href="#/users">User List</a> <span> / {{selectedUser.name}}</span>
+</span>
+
+<div class="userProfileWrapper">
+  <div class="userDetailsWrapper">
+    <div class="userDetails">
+      <img alt="avatar" height="150" width="150" ng-src='{{selectedUser.avatar}}'>
+      <li>{{selectedUser.name}}</li>
+      <li>{{selectedUser.login}}</li>
+      <div class="contactDetails">
+        <li>{{selectedUser.location}}</li>
+        <li><a href="{{selectedUser.email}}">{{selectedUser.email}}</a></li>
+        <li><a href="{{selectedUser.blog}}">{{selectedUser.blog}}</a></li>
+        <li>{{selectedUser.followers}} followers</li>
+      </div>
+    </div>
   </div>
-</div>
 
-<div>
-
+  <div class="repoDetails">
+    <label>Repositories</label>
+    <input placeholder="Find a repository..." ng-model="searchText.name"></input>
+    <div class="repoItem" ng-repeat="repo in repos | filter:searchText">
+      <div class="forks">{{repo.forks}} forks</div>
+      <a class="repoName" ng-href="{{repo.html_url}}">{{repo.name}}</a>
+      <div class="repoDescription">{{repo.description}}</div>
+      <div class="repoModifiedDate">Last modified on {{parseDateString(repo.updated_at)}}</div>
+    </div>
+  </div>
 </div>
